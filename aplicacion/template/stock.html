@@ -1,0 +1,45 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Listado de Parroquias
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'crear_producto' %}">Crear producto</a>
+<p>insumos: {{insumos}}</p>
+<p>medicamentos: {{medicamentos}}</p>
+<p>dispositivos: {{dispositivos}}</p>
+<table id="tabla_datos">
+
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Cantidad</th>
+      <th>Estado</th>
+      <th>Novedad </th>
+      <th>Categoria</th>
+      <th>Cambios</th>
+    </tr>
+  </thead>
+
+  {% for e in productos %}
+  <tr>
+    <td> {{e.nombre}}
+    </td>
+    <td>{{e.cantidad}} </td>
+    <td> {{e.estado}}</td>
+    <td>{{e.novedad}}</td>
+    <td>{{e.categoria.nombre}}</td>
+    <li></li>
+    <td><a href=""></a>
+        <a href=""></a>
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}

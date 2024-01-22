@@ -20,21 +20,41 @@ from aplicacion.serializers import (
 
 # Create your views here.
 
+
 def index(request):
     return render(request, 'index.html')
 
+
 def crearProducto(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         formulario = ProductoForm(request.POST)
         print(formulario.errors)
         if formulario.is_valid():
-            formulario.save() 
+            formulario.save()
             return redirect(index)
     else:
         formulario = ProductoForm()
     diccionario = {'formulario': formulario}
 
     return render(request, 'crear_Producto.html', diccionario)
+
+
+def bsuquedadStock(request):
+    producto = Producto.objects.all()
+    insumos = 0
+    medicamentos = 0
+    dispositivos = 0
+    for e in producto:
+        if (e.categoria.nombre == "Dispositivos Medicos"):
+            dispositivos += 1
+        if (e.categoria.nombre == "Insumos Medicos"):
+            insumos += 1
+        if (e.categoria.nombre == "Medicamentos"):
+            medicamentos += 1
+    informacion_template = {'insumos': insumos, 'medicamentos': medicamentos,
+                            'dispositivos': dispositivos, 'productos': producto}
+    return render(request, 'stock.html', informacion_template)
+
 
 def RegistraProducto(request):
     pass
@@ -70,7 +90,7 @@ def devuelveDetallesLlegada(request):
 
 ########################################################
 
-## Almacen
+# Almacen
 
 
 def notificaLlegada():
