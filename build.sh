@@ -3,7 +3,6 @@
 set -o errexit
 
 # Cambiar al directorio 'arquictectura'
-cd arquictectura
 
 # Instalar dependencias con pip
 pip install -r requirements.txt
