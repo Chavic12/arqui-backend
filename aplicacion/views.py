@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework import viewsets, permissions
+from .forms import *
 from aplicacion.models import (
     Inventario,
     Almacen,
@@ -19,11 +20,21 @@ from aplicacion.serializers import (
 
 # Create your views here.
 
-
-## Todo inventario
 def index(request):
-    pass
+    return render(request, 'index.html')
 
+def crearProducto(request):
+    if request.method=='POST':
+        formulario = ProductoForm(request.POST)
+        print(formulario.errors)
+        if formulario.is_valid():
+            formulario.save() 
+            return redirect(index)
+    else:
+        formulario = ProductoForm()
+    diccionario = {'formulario': formulario}
+
+    return render(request, 'crear_Producto.html', diccionario)
 
 def RegistraProducto(request):
     pass

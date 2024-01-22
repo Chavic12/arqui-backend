@@ -1,0 +1,45 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Listado de Parroquias
+{% endblock %}
+
+{% block content %}
+<h3>Ciudades </h3>
+<a href="{% url 'crear_ciudad' %}">Crear Ciudad</a>
+<h3>Parroquias </h3>
+<a href="{% url 'crear_parroquia' %}">Crear Parroquias</a>
+<table id="tabla_datos">
+
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Distrito</th>
+      <th>Año Creación</th>
+      <th>Numero Barrios </th>
+      <th>ciudad</th>
+      <th>Cambios</th>
+    </tr>
+  </thead>
+
+  {% for e in parroquias %}
+  <tr>
+    <td> {{e.nombre}}
+    </td>
+    <td>{{e.distrito}} </td>
+    <td> {{e.añoCreacion}}</td>
+    <td>{{e.numBarrios}}</td>
+    <td>{{e.ciudad.nombre}}</td>
+    <li></li>
+    <td><a href="{% url 'editar_parroquia' e.id %}">Editar</a>
+        <a href="{% url 'crear_parroquia' %}">Crear Parroquia</a>
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}

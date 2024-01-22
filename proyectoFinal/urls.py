@@ -6,7 +6,7 @@ from aplicacion.views import (
     RolPersonaViewSet,
     PersonalViewSet,
     CategoriaProductoViewSet,
-    ProductoViewSet,
+    ProductoViewSet
 )
 from rest_framework import routers
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -14,17 +14,18 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 router = routers.DefaultRouter()
 
 # Registrar las vistas en el router
-router.register(r"inventarios", InventarioViewSet)
-router.register(r"almacenes", AlmacenViewSet)
-router.register(r"rolpersonas", RolPersonaViewSet)
-router.register(r"personales", PersonalViewSet)
-router.register(r"categoriaproductos", CategoriaProductoViewSet)
-router.register(r"productos", ProductoViewSet)
+router.register(r'inventarios', InventarioViewSet)
+router.register(r'almacenes', AlmacenViewSet)
+router.register(r'rolpersonas', RolPersonaViewSet)
+router.register(r'personales', PersonalViewSet)
+router.register(r'categoriaproductos', CategoriaProductoViewSet)
+router.register(r'productos', ProductoViewSet)
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/", include(router.urls)),
-    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path('admin/', admin.site.urls),
+    path('', include('aplicacion.urls')),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
