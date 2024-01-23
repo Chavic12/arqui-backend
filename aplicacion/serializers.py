@@ -16,8 +16,6 @@ class InventarioSerializer(serializers.ModelSerializer):
 
 
 class AlmacenSerializer(serializers.ModelSerializer):
-    inventario_inventario = InventarioSerializer()
-
     class Meta:
         model = Almacen
         fields = "__all__"
@@ -30,9 +28,6 @@ class RolPersonaSerializer(serializers.ModelSerializer):
 
 
 class PersonalSerializer(serializers.ModelSerializer):
-    rol_rol = RolPersonaSerializer()
-    inventario_inventario = InventarioSerializer()
-
     class Meta:
         model = Personal
         fields = "__all__"
@@ -45,9 +40,6 @@ class CategoriaProductoSerializer(serializers.ModelSerializer):
 
 
 class ProductoSerializer(serializers.ModelSerializer):
-    inventario_inventario = InventarioSerializer()
-    categoria_categoria = CategoriaProductoSerializer()
-
     class Meta:
         model = Producto
         fields = "__all__"
