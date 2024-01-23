@@ -14,12 +14,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 router = routers.DefaultRouter()
 
 # Registrar las vistas en el router
-router.register(r'inventarios', InventarioViewSet)
-router.register(r'almacenes', AlmacenViewSet)
-router.register(r'rolpersonas', RolPersonaViewSet)
-router.register(r'personales', PersonalViewSet)
-router.register(r'categoriaproductos', CategoriaProductoViewSet)
-router.register(r'productos', ProductoViewSet)
+router.register(r'inventarios', InventarioViewSet, 'inventarios')
+router.register(r'almacenes', AlmacenViewSet, 'almacenes')
+router.register(r'rolpersonas', RolPersonaViewSet, 'rolpersonas')
+router.register(r'personales', PersonalViewSet, 'personales')
+router.register(r'categoriaproductos', CategoriaProductoViewSet, 'categoriaproductos')
+router.register(r'productos', ProductoViewSet, 'productos')
 
 # Para editar el endpoint de la API
 
@@ -30,4 +30,3 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
-urlpatterns += staticfiles_urlpatterns()
