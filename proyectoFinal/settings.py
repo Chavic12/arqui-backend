@@ -148,4 +148,14 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = []
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:4300',
+    'http://127.0.0.1:4300',
+    'http://localhost:3000',  # Agrega "localhost:3000" a la lista
+    'http://127.0.0.1:3000',  # Puedes agregar "127.0.0.1:3000" si es necesario
+    'http://127.0.0.1:4200',  # Agrega cualquier otro origen que desees permitir
+    'http://localhost:4200',  # Agrega cualquier otro origen que desees permitir
+    'http://localhost',
+    'http://127.0.0.1',
+    'http://localhost:8000',  # Agrega tu servidor de desarrollo Django si es diferente
+]
