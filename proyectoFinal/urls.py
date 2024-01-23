@@ -21,6 +21,8 @@ router.register(r'personales', PersonalViewSet)
 router.register(r'categoriaproductos', CategoriaProductoViewSet)
 router.register(r'productos', ProductoViewSet)
 
+# Para editar el endpoint de la API
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('aplicacion.urls')),
