@@ -16,6 +16,7 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Quick-start development settings - unsuitable for production
@@ -47,9 +48,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'aplicacion',
     'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -83,11 +86,18 @@ WSGI_APPLICATION = "proyectoFinal.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default="postgres://postgres:postgres@localhost:5432/arquitectura",
+#         conn_max_age=600,
+#     )
+# }
+
 DATABASES = {
-    "default": dj_database_url.config(
-        default="postgres://postgres:postgres@localhost:5432/arquitectura",
-        conn_max_age=600,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation
