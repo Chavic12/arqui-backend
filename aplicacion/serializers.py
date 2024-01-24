@@ -40,8 +40,6 @@ class CategoriaProductoSerializer(serializers.ModelSerializer):
 
 
 class ProductoSerializer(serializers.ModelSerializer):
-    inventario = InventarioSerializer()
-    categoria = CategoriaProductoSerializer()
     class Meta:
         model = Producto
         fields = "__all__"
