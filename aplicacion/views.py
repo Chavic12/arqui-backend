@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, generics
-from rest_framework import viewsets, permissions
+from django.shortcuts import render, redirect
+from rest_framework import viewsets, permissions, generics
 from .forms import *
 from aplicacion.models import (
     Inventario,
