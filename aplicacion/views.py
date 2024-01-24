@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, generics
 from rest_framework import viewsets, permissions
 from .forms import *
 from aplicacion.models import (
@@ -16,6 +16,7 @@ from aplicacion.serializers import (
     PersonalSerializer,
     CategoriaProductoSerializer,
     ProductoSerializer,
+    ProductoSerializer2,
 )
 
 # Create your views here.
@@ -172,3 +173,11 @@ class CategoriaProductoViewSet(viewsets.ModelViewSet):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+
+
+class ProductoInventarioDetalleView(generics.ListAPIView):
+    serializer_class = ProductoSerializer2
+
+    def get_queryset(self):
+        # Devuelve todos los productos con detalles de inventario
+        return Producto.objects.select_related('inventario').all()

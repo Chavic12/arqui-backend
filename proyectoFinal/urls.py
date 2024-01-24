@@ -6,7 +6,8 @@ from aplicacion.views import (
     RolPersonaViewSet,
     PersonalViewSet,
     CategoriaProductoViewSet,
-    ProductoViewSet
+    ProductoViewSet,
+    ProductoInventarioDetalleView,
 )
 from rest_framework import routers
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -28,5 +29,7 @@ urlpatterns = [
     path('', include('aplicacion.urls')),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/productos-detalles/', ProductoInventarioDetalleView.as_view(), name='productos_detalles'),
+
 ]
 
